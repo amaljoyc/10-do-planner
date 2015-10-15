@@ -1,2 +1,2 @@
 # 10-do-planner
-A web application in Python/Flask
+A todo web application in Python/Flask
