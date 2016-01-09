@@ -2,12 +2,17 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block page_content %}
+
+{{ wtf.quick_form(form) }}
+
 <div class="page-header">
     {{  super() }}
     <h2>
-        {{todo_text}}
+        {% for todo in todos %}
+            {{ todo.text }}
+            <br>
+        {% endfor %}
     </h2>
 </div>
 
-{{ wtf.quick_form(form) }}
 {% endblock %}
