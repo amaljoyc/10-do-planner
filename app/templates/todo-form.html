@@ -7,12 +7,43 @@
 
 <div class="page-header">
     {{  super() }}
-    <h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Todos</th>
+        </tr>
+      </thead>
+      <tbody>
         {% for todo in todos %}
-            {{ todo.text }}
-            <br>
+          <tr>
+              <th scope="row">{{ loop.index }}</th>
+              <td>
+                  <a href="#" id="todo_{{ loop.index }}" data-type="textarea" data-url="/edit_todo" data-pk="{{ todo.id }}" data-name="text" data-title="Edit todo">{{ todo.text }}</a>
+              </td>
+          </tr>
         {% endfor %}
-    </h2>
+      </tbody>
+    </table>
 </div>
 
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+
+    <script src="/static/x-editable/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+    <script>
+        $.fn.editable.defaults.mode = 'inline';
+    </script>
+
+    {% for todo in todos %}
+        <script>
+            $('#todo_{{ loop.index }}').editable({
+                placement: "right",
+                error: function (errors) {
+                }
+            });
+        </script>
+    {% endfor %}
 {% endblock %}

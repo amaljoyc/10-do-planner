@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, request, json
 from .. import db
 from ..models import Todo
 from . import main
@@ -17,3 +17,12 @@ def todo_form():
     todos = Todo.query.all()
     return render_template(
         'todo-form.html', form=form, todos=todos)
+
+
+@main.route('/edit_todo', methods=['GET', 'POST'])
+def edit_todo():
+    id = request.form["pk"]
+    todo = Todo.query.get(id)
+    todo.text = request.form["value"]
+    db.session.commit()
+    return json.dumps({})

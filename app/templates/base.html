@@ -3,8 +3,10 @@
 {% block title %}10d0{% endblock %}
 
 {% block head %}
-{{ super() }}
-<link rel="icon" href="{{ url_for('static', filename = 'favicon.ico') }}" type="image/x-icon">
+    {{ super() }}
+
+    <link rel="icon" href="{{ url_for('static', filename = 'favicon.ico') }}" type="image/x-icon">
+    <link href="/static/x-editable/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
 {% endblock %}
 
 {% block navbar %}
